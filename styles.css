@@ -1,0 +1,55 @@
+.navbar{
+	background-color: #abebea;
+
+}
+
+
+	
+
+
+.navbar-brand{
+	color: black;
+	 
+}
+
+ h3{
+	font-style: normal;
+	color: purple;
+	
+	padding: 2rem;
+
+}
+
+#footersection{
+ background-color: #7df0ff;
+ padding: 20px;
+}
+
+.jumbotron{
+	background-image: url(images/bg1.png);
+	
+    
+	 text-align: center;
+	 align-items: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    height: 600px;
+    background-position: center;
+    background-size: cover;
+}
+.icon-facebook {
+        color: #3b5998;
+        font-size: 30px;
+    }
+    .icon-instagram {
+        color: #E4405F;
+        font-size: 30px;
+    }
+    .icon-twitter {
+        color: #1DA1F2;
+        font-size: 30px;
+    }
+    .icon-whatsapp {
+        color: #25D366;
+        font-size: 30px;
+    }
+    
