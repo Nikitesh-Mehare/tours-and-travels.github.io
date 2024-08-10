@@ -14,7 +14,20 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 
+
+    <style type="text/css">
+	
+    #righticon{
+    	position: relative;
+    	left: -20px;
+    }
+    
+	
+</style>
+
+
 </head>
+
 
 
 
@@ -90,13 +103,33 @@
 	<h2>Gallery</h2>
 	<div class="row pt-4" >
 		<div class="col-md-4">
-			<img src="images/image4.png " class="img-fluid">
+			<div class="card">
+				<div class="card-body">
+			     <img src="images/image4.png " class="img-fluid">
+		   </div>
+		   <div class="card-footer">
+		   	<h5>Image 1</h5>
+		   </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
-			<img src="images/image3.png " class="img-fluid">
-		</div>
-		<div class="col-md-4">
-			<img src="images/image5.png " class="img-fluid">
+			<div class="card">
+				<div class="card-body">
+			     <img src="images/image3.png " class="img-fluid">
+		   </div>
+		   <div class="card-footer">
+		   	<h5>Image 2</h5>
+		   </div>
+		 </div>
+		</div><div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+			     <img src="images/image5.png " class="img-fluid">
+		   </div>
+		   <div class="card-footer">
+		   	<h5>Image 3</h5>
+		   </div>
+		 </div>
 		</div>
 	
 	</div>
@@ -187,6 +220,8 @@
     </div>
 </footer>
 
+<!--Register Modal-->
+
  <div class="modal " tabindex="-1" id="registermodal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -197,20 +232,27 @@
         </button>
       </div>
       <div class="modal-body">
-      	<form>
+      	<form method="post">
 		      		   <div class="form-group">
 							    <label for="exampleInputFullName">Full Name</label>
-							    <input type="text" class="form-control" id="exampleInputFullName">
+							    <input type="text" class="form-control" id="exampleInputFullName"> 
 							  </div>
 							  <div class="form-group">
 							    <label for="exampleInputEmail1">Email address</label>
 							    <input type="email" class="form-control" id="exampleInputEmail">
 							  </div>
 							  <div class="form-group">
-							    <label for="exampleInputPassword1">Password</label>
-							    <input type="password" class="form-control" id="exampleInputPassword1">
-							  </div>
-							   <div class="form-group">
+												  <label for="exampleInputPassword1">Password</label>
+												  <div class="input-group">
+												    <input type="password" class="form-control" id="inputPassword1">
+												    <div class="input-group-append">
+												      <span class="input-group-text">
+												        <i class="bi bi-eye" id="togglePasswordIcon"></i>
+												      </span>
+												    </div>
+												  </div>
+												</div>
+									   <div class="form-group">
 							    <label for="exampleInputContact">Contact No</label>
 							    <input type="tel" class="form-control" id="exampleInputContact">
 							  </div>
@@ -233,7 +275,7 @@
   </div>
 </div>
 
-
+<!--Login Modal-->
 <div class="modal " tabindex="-1" id="loginmodal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -244,20 +286,27 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="post">
 		      		   
 							  <div class="form-group">
 							    <label for="exampleInputEmail1">Email address</label>
-							    <input type="email" class="form-control" id="exampleInputEmail">
-							     <div class="invalid-feedback">Please enter a valid email address.</div>
-         
+							    <input type="email" class="form-control" id="inputEmail">
+							    <small id="emailDisc" class="form-text"></small>
+							   
 							  </div>
-							  <div class="form-group">
-							    <label for="exampleInputPassword1">Password</label>
-							    <input type="password" class="form-control" id="exampleInputPassword1">
-							     <div class="invalid-feedback">Please enter a valid password.</div>
-         
-							  </div>
+							   <div class="form-group">
+										<label for="exampleInputPassword1">Password</label>
+												<div class="input-group">
+												    <input type="password" class="form-control" id="inputPassword">
+												       <div class="input-group-append">
+												          <span class="input-group-text" >
+												              <i class="bi bi-eye" id="showPasswordIcon"></i>
+												          </span>
+												        </div>
+												</div>
+											<small id="passDisc" class="form-text"></small>
+									</div>
+							  
 							  <div class="form-group">
 					  	   <button type="submit" class="btn btn-success" align="center">Login</button>
 					      </div>
@@ -271,6 +320,107 @@
     </div>
   </div>
 </div>
+
+<!--Jquery cdn-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+     $("#inputEmail").keyup(function(){
+     	if (checkMail())
+     	{
+         $("#emailDisc").html("<font color='green'><i>Email Validate</i></font>");
+         $("#inputEmail").css("border","2px solid green");
+
+     	}
+     	else
+     	{
+     		 $("#emailDisc").html("<font color='red'><i>Email contains <u>@gmail.com</u> is mandatory ex. info@gmail.com</i></font>");
+     		 $("#inputEmail").css("border","2px solid red");
+     	}
+
+     })
+
+     $("#inputPassword").keyup(function(){
+     	
+     	if(checkPass())
+     	{
+     		
+         $("#passDisc").html("<font color='green'><i>Password Validate</i></font>");
+         $("#inputPassword").css("border","2px solid green");
+
+     	}
+     	else
+     	{
+     		 $("#passDisc").html("<font color='red'><i>Password contains atleast 1 uppercase letter, 1 lowercase letter, one special symbol & 1 digit and length between 8-15 characters.</i></font>");
+     		 $("#inputPassword").css("border","2px solid red");
+     	}
+
+     })
+          
+    //Show hide Password for login form
+
+     $("#showPasswordIcon").click(function(){
+
+        let pwdtype=$("#inputPassword").attr("type")
+        if(pwdtype=="password")
+        {
+        	$("#inputPassword").attr("type","text")
+          $("#showPasswordIcon").attr("class"," bi bi-eye-slash")
+        }
+        else{
+        	$("#inputPassword").attr("type","password")
+        	$("#showPasswordIcon").attr("class", "bi bi-eye")
+
+        }
+
+     })
+
+     //Show hide password for register form
+
+     $("#togglePasswordIcon").click(function(){
+     	let passwordtype= $("#inputPassword1").attr("type")
+     	if(passwordtype=="password"){
+     		$("#inputPassword1").attr("type", "text")
+     		$("#togglePasswordIcon").attr("class", "bi bi-eye-slash")
+     	}
+     	else
+     	{
+     		$("#inputPassword1").attr("type", "password")
+     		$("#togglePasswordIcon").attr("class", "bi bi-eye")
+     	}
+     })
+
+
+   })
+
+	function checkMail(){
+		let emailRegEx=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		let emailData=$("#inputEmail").val();
+
+		if(emailRegEx.test(emailData))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function checkPass(){
+		let passData=$("#inputPassword").val();
+		let passRegEx=/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\S+$).{8,15}$/;
+
+		if(passRegEx.test(passData))
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+</script>
 
 </body>
 </html>
